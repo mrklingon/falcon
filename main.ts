@@ -18,6 +18,17 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, 
         bb8.sayText("You've got 'em!", 1000, true)
     }
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
+    if (0 == Fixed) {
+        bb8.sayText("You have to fix the engine", 1000, true)
+    } else {
+        if (0 == Fuel) {
+            bb8.sayText("We can't go without Fuel!!", 1000, true)
+        } else {
+            bb8.sayText("Now we can go!", 1000, true)
+        }
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
         if (0 == FirstTools) {
@@ -25,6 +36,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         } else {
             bb8.sayText("Good Work! It is fixed!", 1000, true)
             Fixed = 1
+        }
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
+    if (0 == Fixed) {
+        bb8.sayText("You have to fix the engine", 1000, true)
+    } else {
+        if (0 == Fuel) {
+            bb8.sayText("We can't go without Fuel!!", 1000, true)
+        } else {
+            bb8.sayText("Now we can go!", 1000, true)
         }
     }
 })
@@ -43,6 +65,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, lo
 })
 let Fixed = 0
 let bb8: Sprite = null
+let Fuel = 0
 let FirstTools = 0
 let FirstEngine = 0
 let Wookie: Sprite = null
@@ -53,6 +76,7 @@ controller.moveSprite(Wookie)
 scene.cameraFollowSprite(Wookie)
 FirstEngine = 0
 FirstTools = 0
+Fuel = 0
 bb8 = sprites.create(assets.image`BB-8`, SpriteKind.droid)
 bb8.setPosition(0, 0)
 bb8.follow(Wookie, 70)
