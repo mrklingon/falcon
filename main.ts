@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const droid = SpriteKind.create()
+}
 function setLevel (num: number) {
     if (num == 1) {
         tiles.setTilemap(tilemap`level1`)
@@ -6,14 +9,51 @@ function setLevel (num: number) {
         tiles.setTilemap(tilemap`level2`)
     }
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
+    if (0 == FirstTools) {
+        bb8.sayText("These Are your tools", 1000, true)
+        pause(2000)
+        FirstTools = 1
+        tiles.setTileAt(location, assets.tile`myTile0`)
+        bb8.sayText("You've got 'em!", 1000, true)
+    }
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
+        if (0 == FirstTools) {
+            bb8.sayText("You need the Tools!", 1000, true)
+        } else {
+            bb8.sayText("Good Work! It is fixed!", 1000, true)
+            Fixed = 1
+        }
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`entry`, function (sprite, location) {
     setLevel(2)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`exit`, function (sprite, location) {
     setLevel(1)
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, location) {
+    if (0 == FirstEngine) {
+        bb8.sayText("You need to fix this engine!", 1000, true)
+        Wookie.sayText(":)", 500, false)
+        FirstEngine = 1
+    }
+})
+let Fixed = 0
+let bb8: Sprite = null
+let FirstTools = 0
+let FirstEngine = 0
+let Wookie: Sprite = null
 let level = 1
 setLevel(level)
-let Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
+Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
 controller.moveSprite(Wookie)
 scene.cameraFollowSprite(Wookie)
+FirstEngine = 0
+FirstTools = 0
+bb8 = sprites.create(assets.image`BB-8`, SpriteKind.droid)
+bb8.setPosition(0, 0)
+bb8.follow(Wookie, 70)
+Fixed = 0
