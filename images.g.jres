@@ -1,0 +1,12 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAOAOAAAAAAAA4A4AAAAAAAAA7gAA4AAAAO7vDgDgAODu7v7u7u4A7ugu/u7u7gDu/i7+7gAAAO7oIu7v7u4A7u4O7g/g7gAAAADuAADgAAAA4A4AAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Chewbacca"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
