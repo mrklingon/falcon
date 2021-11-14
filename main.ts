@@ -6,6 +6,12 @@ function setLevel (num: number) {
         tiles.setTilemap(tilemap`level2`)
     }
 }
+scene.onOverlapTile(SpriteKind.Player, assets.tile`entry`, function (sprite, location) {
+    setLevel(2)
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`exit`, function (sprite, location) {
+    setLevel(1)
+})
 let level = 1
 setLevel(level)
 let Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
