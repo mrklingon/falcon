@@ -37,21 +37,25 @@ function delPorgs () {
     }
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    Wookie.setImage(assets.image`Chewbacca0`)
-    Wookie.sayText("WRORRRARRRR!!", 500, false)
-    music.knock.play()
-    scene.cameraShake(4, 500)
-    for (let index = 0; index < 4; index++) {
-        Wookie.setImage(assets.image`Chewbacca`)
-        pause(200)
+    if (Flying == 0) {
         Wookie.setImage(assets.image`Chewbacca0`)
-        pause(200)
-        Wookie.setImage(assets.image`Chewbacca`)
-    }
-    if (level == 1) {
-        delPorgs()
-        pause(100)
-        mkPorgs()
+        Wookie.sayText("WRORRRARRRR!!", 500, false)
+        music.knock.play()
+        scene.cameraShake(4, 500)
+        for (let index = 0; index < 4; index++) {
+            Wookie.setImage(assets.image`Chewbacca`)
+            pause(200)
+            Wookie.setImage(assets.image`Chewbacca0`)
+            pause(200)
+            Wookie.setImage(assets.image`Chewbacca`)
+        }
+        if (level == 1) {
+            delPorgs()
+            pause(100)
+            mkPorgs()
+        }
+    } else {
+    	
     }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
@@ -75,12 +79,18 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
     }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
-        if (0 == FirstTools) {
-            bb8.sayText("You need the Tools!", 1000, true)
-        } else {
-            bb8.sayText("Good Work! It is fixed!", 1000, true)
-            Fixed = 1
+    if (Flying == 1) {
+        bolt = sprites.create(assets.image`Laser`, SpriteKind.Player)
+        bolt.setPosition(MFalc.x, MFalc.y)
+        bolt.setVelocity(0, -97)
+    } else {
+        if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
+            if (0 == FirstTools) {
+                bb8.sayText("You need the Tools!", 1000, true)
+            } else {
+                bb8.sayText("Good Work! It is fixed!", 1000, true)
+                Fixed = 1
+            }
         }
     }
 })
@@ -90,6 +100,7 @@ function takeOff () {
     Wookie.destroy()
     bb8.destroy()
     MFalc = sprites.create(assets.image`Falcon-fly`, SpriteKind.ship)
+    MFalc.setPosition(71, 79)
     scene.setBackgroundImage(img`
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -215,6 +226,7 @@ function takeOff () {
     effects.starField.startScreenEffect()
     controller.moveSprite(MFalc)
     MFalc.setStayInScreen(true)
+    Flying = 1
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, location) {
     if (0 == Fixed) {
@@ -250,6 +262,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, lo
 })
 let ps: Sprite = null
 let MFalc: Sprite = null
+let bolt: Sprite = null
+let Flying = 0
 let porgsprites: Sprite[] = []
 let porgs: Image[] = []
 let Fixed = 0
@@ -274,3 +288,4 @@ bb8.follow(Wookie, 70)
 Fixed = 0
 porgs = [assets.image`PORG`, assets.image`PORG`, assets.image`PORG`]
 porgsprites = []
+Flying = 0
