@@ -86,8 +86,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         bolt.setPosition(MFalc.x, MFalc.y)
         bolt.setVelocity(0, -200)
         bolt.setFlag(SpriteFlag.DestroyOnWall, true)
-        pause(1000)
-        bolt.destroy()
     } else {
         if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
             if (0 == FirstTools) {
