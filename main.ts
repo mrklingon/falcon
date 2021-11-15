@@ -1,11 +1,14 @@
 namespace SpriteKind {
     export const droid = SpriteKind.create()
+    export const porg = SpriteKind.create()
 }
 function setLevel (num: number) {
     if (num == 1) {
         tiles.setTilemap(tilemap`level1`)
+        mkPorgs()
     }
     if (num == 2) {
+        delPorgs()
         tiles.setTilemap(tilemap`level2`)
     }
 }
@@ -17,6 +20,18 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, 
         tiles.setTileAt(location, assets.tile`myTile0`)
         bb8.sayText("You've got 'em!", 1000, true)
     }
+})
+function delPorgs () {
+    for (let value of porgsprites) {
+        value.destroy()
+    }
+}
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    Wookie.setImage(assets.image`Chewbacca0`)
+    Wookie.sayText("WRORRRARRRR!!", 500, false)
+    music.knock.play()
+    scene.cameraShake(4, 500)
+    Wookie.setImage(assets.image`Chewbacca`)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
     if (0 == Fixed) {
@@ -53,6 +68,14 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile16`, function (sprite, 
 scene.onOverlapTile(SpriteKind.Player, assets.tile`entry`, function (sprite, location) {
     setLevel(2)
 })
+function mkPorgs () {
+    for (let value of porgs) {
+        ps = sprites.create(value, SpriteKind.porg)
+        ps.setPosition(140, 101)
+        ps.follow(Wookie, 50)
+        porgsprites.unshift(ps)
+    }
+}
 scene.onOverlapTile(SpriteKind.Player, assets.tile`exit`, function (sprite, location) {
     setLevel(1)
 })
@@ -63,6 +86,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, lo
         FirstEngine = 1
     }
 })
+let ps: Sprite = null
+let porgsprites: Sprite[] = []
+let porgs: Image[] = []
 let Fixed = 0
 let bb8: Sprite = null
 let Fuel = 0
@@ -82,3 +108,5 @@ bb8 = sprites.create(assets.image`BB-8`, SpriteKind.droid)
 bb8.setPosition(0, 0)
 bb8.follow(Wookie, 70)
 Fixed = 0
+porgs = [assets.image`PORG`, assets.image`PORG`, assets.image`PORG`]
+porgsprites = []

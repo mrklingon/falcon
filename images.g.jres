@@ -9,6 +9,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "BB-8"
     },
+    "image3": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAO7u7gAAAAAA7gDgDgAA4AAAAO7vDgDgAODu7v7u7u4A7ugi/u7u7gDu/iL+7gAAAO7oIu7v7u4A7u4O4A/g7gAAAO4OAADgAADgDgAAAAAA4A4AAAAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Chewbacca0"
+    },
+    "image4": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAFtA5AAAAAAAu+7uAAAAAAAAQO4AAAAAAABABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "PORG"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
