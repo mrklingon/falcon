@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const droid = SpriteKind.create()
     export const porg = SpriteKind.create()
     export const ship = SpriteKind.create()
+    export const rock = SpriteKind.create()
 }
 function setLevel (num: number) {
     if (num == 1) {
@@ -84,7 +85,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         music.pewPew.play()
         bolt.setPosition(MFalc.x, MFalc.y)
         bolt.setVelocity(0, -200)
-        pause(500)
+        bolt.setFlag(SpriteFlag.DestroyOnWall, true)
+        pause(1000)
         bolt.destroy()
     } else {
         if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
@@ -96,6 +98,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
             }
         }
     }
+})
+sprites.onOverlap(SpriteKind.ship, SpriteKind.rock, function (sprite, otherSprite) {
+    scene.cameraShake(4, 500)
+    music.knock.play()
+    info.changeLifeBy(-1)
 })
 function takeOff () {
     delPorgs()
@@ -253,6 +260,10 @@ function mkPorgs () {
         porgsprites.unshift(ps)
     }
 }
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.rock, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.fire, 100)
+    info.changeScoreBy(5)
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`exit`, function (sprite, location) {
     setLevel(1)
 })
@@ -263,6 +274,7 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, lo
         FirstEngine = 1
     }
 })
+let rck: Sprite = null
 let ps: Sprite = null
 let MFalc: Sprite = null
 let bolt: Sprite = null
@@ -290,5 +302,21 @@ bb8.setPosition(0, 0)
 bb8.follow(Wookie, 70)
 Fixed = 0
 porgs = [assets.image`PORG`, assets.image`PORG`, assets.image`PORG`]
+let Asteroids = [
+assets.image`asteroid`,
+assets.image`asteroid0`,
+assets.image`asteroid1`,
+assets.image`asteroid2`
+]
 porgsprites = []
 Flying = 0
+info.setLife(10)
+forever(function () {
+    pause(500)
+    if (Flying == 1) {
+        rck = sprites.create(Asteroids[randint(0, 3)], SpriteKind.rock)
+        rck.setPosition(randint(0, 160), randint(0, 120))
+        rck.setVelocity(randint(-50, 50), randint(-50, 50))
+        rck.setFlag(SpriteFlag.DestroyOnWall, true)
+    }
+})

@@ -29,6 +29,26 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Laser"
     },
+    "image7": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAC7AAALAAAAALu7sAsAAACwvuu7sAAAALC+6/+/AAAA6+7u774AAACw7u7uvrsAALDu7u7uvgAAsO7u7u67AACw/u/uvgsAALD/7u4LAAAAsO7uuwsAAACwu7sLAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsLsAAAAAAACwsgsAAAAAu7siCwAAALvwIiKyCwAAsPsiIiILAAAA+y8iIrsAALAiIiIisgAAsLsiIi+yAAC7uyIi/7IAALsiIiLysgAAALuyu7u7AAAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid0"
+    },
+    "image9": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAACIAAAAALALiIgAAAAACLuFWAgAAAD4/4VbCAAAAFj1VVW1AACIWFVVVQgAAFhVVVVVCAAAiFVVVVUIAACAWFX1XwgAAACAVVX/CAAAAICIVVUIAAAAAICIiAgAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid1"
+    },
+    "image10": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuwsAAAAAALCrCwAAAAAAsKq7uwAAALCrqqoPuwAAsKqqqr8LAAC7qqr6vwAAAKuqqqqqCwAAq/qqqrsLAACr/6qqu7sAAKuvqqqquwAAu7u7q7sAAAAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "asteroid2"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

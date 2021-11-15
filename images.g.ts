@@ -117,6 +117,82 @@ namespace myImages {
 . . 8 . . . . . . . . 8 . . . . 
 . . 8 . . . . . . . . 8 . . . . 
 `;
+            case "image7":
+            case "asteroid":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . b . . . . . . . . . 
+. . . . b b e b b b b b b b . . 
+. . b b e e e e e e e f e b . . 
+. . b b b b e e e e f f e b . . 
+. . . b b b e e e e f e e b . . 
+. . . b e e e e e e e e e b . . 
+. . . . b f f e e e e e b b . . 
+. . . b b f e e e e e e b . . . 
+. . b b . f e e e e e b b . . . 
+. . . . b b b b e e b . . . . . 
+. . . . . . . b e b b . . . . . 
+. . . . . . . b b b . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image8":
+            case "asteroid0":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . b . . . . b b . . . . 
+. . . . . b b . b b b b . . . . 
+. . . . b . b b 2 b b 2 b . . . 
+. . . . b f f f 2 b b 2 b . . . 
+. . . . b 2 2 f 2 2 2 2 2 b . . 
+. . b b b 2 2 2 2 2 2 2 b . . . 
+. . b 2 2 2 2 2 2 2 2 2 b . . . 
+. . b b 2 2 2 2 2 2 2 2 b . . . 
+. . . b b 2 2 2 2 f f 2 b . . . 
+. . . . . b 2 2 2 2 f f b . . . 
+. . . . . b b b 2 2 2 2 b . . . 
+. . . . . . . b b b b b b . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image9":
+            case "asteroid1":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . 8 8 8 . . . . . . 
+. . . . . . . 8 5 8 8 . . . . . 
+. . . . 8 8 8 8 5 5 8 . . . . . 
+. . b b . f 5 5 5 5 5 8 8 . . . 
+. . . b b f 5 5 5 5 5 5 8 . . . 
+. . . . b f f 5 5 5 5 5 8 8 . . 
+. . . 8 5 5 5 5 5 5 5 5 5 8 . . 
+. . . 8 8 8 5 5 5 5 f 5 5 8 . . 
+. . 8 8 8 b 5 5 5 5 f f 5 8 . . 
+. . 8 8 5 5 5 5 5 5 5 f 5 8 . . 
+. . . . 8 8 5 8 8 8 8 8 8 8 . . 
+. . . . . . b . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
+            case "image10":
+            case "asteroid2":return img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . b b b b b b . . . 
+. . . . . b b b a a a a b . . . 
+. . . . . b a a a a f f b . . . 
+. . . b b a a a a f f a b . . . 
+. . b b a a a a a a a a b . . . 
+. . b a a a a a a a a a b . . . 
+. . b b b a a a a a a a b . . . 
+. . . . b a a f a a a a a b . . 
+. . . . b f f f a b b a b . . . 
+. . . . b . b b a b b a b . . . 
+. . . . . b b . b b b b . . . . 
+. . . . . b . . . . b b . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`;
         }
         return null;
     })
