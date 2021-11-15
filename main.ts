@@ -4,7 +4,16 @@ namespace SpriteKind {
 }
 function setLevel (num: number) {
     if (num == 1) {
-        tiles.setTilemap(tilemap`level1`)
+        if (FirstTools == 0) {
+            tiles.setTilemap(tilemap`level1`)
+        } else {
+            if (FirstTools == 1) {
+                tiles.setTilemap(tilemap`NoTool`)
+            }
+            if (Fuel == 1) {
+                tiles.setTilemap(tilemap`NoFuel`)
+            }
+        }
         mkPorgs()
     }
     if (num == 2) {
@@ -31,7 +40,18 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     Wookie.sayText("WRORRRARRRR!!", 500, false)
     music.knock.play()
     scene.cameraShake(4, 500)
-    Wookie.setImage(assets.image`Chewbacca`)
+    for (let index = 0; index < 4; index++) {
+        Wookie.setImage(assets.image`Chewbacca`)
+        pause(200)
+        Wookie.setImage(assets.image`Chewbacca0`)
+        pause(200)
+        Wookie.setImage(assets.image`Chewbacca`)
+    }
+    if (level == 1) {
+        delPorgs()
+        pause(100)
+        mkPorgs()
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
     if (0 == Fixed) {
@@ -43,6 +63,11 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, 
             bb8.sayText("Now we can go!", 1000, true)
         }
     }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
+    tiles.setTileAt(location, assets.tile`myTile0`)
+    Fuel = 1
+    bb8.sayText("Now we have the Fuel!!", 1000, true)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
@@ -71,9 +96,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`entry`, function (sprite, loc
 function mkPorgs () {
     for (let value of porgs) {
         ps = sprites.create(value, SpriteKind.porg)
-        ps.setPosition(140, 101)
-        ps.follow(Wookie, 50)
+        ps.setPosition(randint(0, 150), 101)
+        ps.follow(Wookie, 25)
         porgsprites.unshift(ps)
+        pause(100)
     }
 }
 scene.onOverlapTile(SpriteKind.Player, assets.tile`exit`, function (sprite, location) {
@@ -95,8 +121,9 @@ let Fuel = 0
 let FirstTools = 0
 let FirstEngine = 0
 let Wookie: Sprite = null
+let level = 0
 game.splash("You need to help Chewbacca!", "The Falcon needs repair & Fuel!")
-let level = 1
+level = 1
 setLevel(level)
 Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
 controller.moveSprite(Wookie)
