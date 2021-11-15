@@ -80,9 +80,12 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Flying == 1) {
-        bolt = sprites.create(assets.image`Laser`, SpriteKind.Player)
+        bolt = sprites.create(assets.image`Laser`, SpriteKind.Projectile)
+        music.pewPew.play()
         bolt.setPosition(MFalc.x, MFalc.y)
-        bolt.setVelocity(0, -97)
+        bolt.setVelocity(0, -200)
+        pause(500)
+        bolt.destroy()
     } else {
         if (Wookie.tileKindAt(TileDirection.Bottom, assets.tile`engine`)) {
             if (0 == FirstTools) {
@@ -99,8 +102,6 @@ function takeOff () {
     tiles.setTilemap(tilemap`level7`)
     Wookie.destroy()
     bb8.destroy()
-    MFalc = sprites.create(assets.image`Falcon-fly`, SpriteKind.ship)
-    MFalc.setPosition(71, 79)
     scene.setBackgroundImage(img`
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -224,6 +225,8 @@ function takeOff () {
         ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
         `)
     effects.starField.startScreenEffect()
+    MFalc = sprites.create(assets.image`Falcon-fly`, SpriteKind.ship)
+    MFalc.setPosition(71, 79)
     controller.moveSprite(MFalc)
     MFalc.setStayInScreen(true)
     Flying = 1
