@@ -69,6 +69,7 @@ let Fuel = 0
 let FirstTools = 0
 let FirstEngine = 0
 let Wookie: Sprite = null
+game.splash("You need to help Chewbacca!", "The Falcon needs repair & Fuel!")
 let level = 1
 setLevel(level)
 Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
