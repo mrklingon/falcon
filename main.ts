@@ -72,6 +72,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 sprites.onOverlap(SpriteKind.ship, SpriteKind.station, function (sprite, otherSprite) {
+    MFalc.destroy()
     music.playMelody("C G F E D C5 G G ", 120)
     game.over(true)
 })
