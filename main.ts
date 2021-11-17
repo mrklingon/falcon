@@ -235,7 +235,7 @@ function takeOff () {
         `)
     effects.starField.startScreenEffect()
     MFalc = sprites.create(assets.image`Falcon-fly`, SpriteKind.ship)
-    MFalc.setPosition(71, 79)
+    MFalc.setPosition(160, 79)
     controller.moveSprite(MFalc)
     MFalc.setStayInScreen(true)
     Flying = 1
