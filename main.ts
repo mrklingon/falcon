@@ -40,8 +40,13 @@ function delPorgs () {
 }
 function mkStation () {
     sstation = sprites.create(assets.image`SpaceStation`, SpriteKind.station)
-    sstation.setPosition(160, 12)
-    sstation.setVelocity(-23, 0)
+    animation.runImageAnimation(
+    sstation,
+    assets.animation`AStation`,
+    500,
+    true
+    )
+    sstation.setPosition(78, 12)
     sstation.setBounceOnWall(true)
     MFalc.setImage(assets.image`SmallFalc`)
 }
@@ -342,7 +347,7 @@ forever(function () {
         rck = sprites.create(Asteroids[randint(0, 3)], SpriteKind.rock)
         rck.setPosition(randint(0, 160), randint(0, 120))
         rck.setVelocity(randint(-50, 50), randint(-50, 50))
-        rck.setFlag(SpriteFlag.DestroyOnWall, true)
+        rck.setFlag(SpriteFlag.AutoDestroy, true)
     }
     clicks += 1
     if (Threshhold < info.score()) {
