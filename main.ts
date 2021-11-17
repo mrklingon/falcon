@@ -3,6 +3,7 @@ namespace SpriteKind {
     export const porg = SpriteKind.create()
     export const ship = SpriteKind.create()
     export const rock = SpriteKind.create()
+    export const station = SpriteKind.create()
 }
 function setLevel (num: number) {
     if (num == 1) {
@@ -36,6 +37,13 @@ function delPorgs () {
     for (let value of porgsprites) {
         value.destroy()
     }
+}
+function mkStation () {
+    sstation = sprites.create(assets.image`SpaceStation`, SpriteKind.station)
+    sstation.setPosition(160, 12)
+    sstation.setVelocity(-23, 0)
+    sstation.setBounceOnWall(true)
+    MFalc.setImage(assets.image`SmallFalc`)
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Flying == 0) {
@@ -82,6 +90,10 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, 
         Fuel = 1
         bb8.sayText("Now we have the Fuel!!", 1000, true)
     }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile24`, function (sprite, location) {
+    sprite.sayText(":)", 500, false)
+    Threshhold = 10
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Flying == 1) {
@@ -278,13 +290,15 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`engine`, function (sprite, lo
 })
 let rck: Sprite = null
 let ps: Sprite = null
-let MFalc: Sprite = null
 let bolt: Sprite = null
+let MFalc: Sprite = null
+let sstation: Sprite = null
 let Flying = 0
 let porgsprites: Sprite[] = []
 let porgs: Image[] = []
 let Fixed = 0
 let bb8: Sprite = null
+let Threshhold = 0
 let Fuel = 0
 let clicks = 0
 let FirstTools = 0
@@ -293,6 +307,7 @@ let Wookie: Sprite = null
 let level = 0
 game.splash("You need to help Chewbacca!", "The Falcon needs repair & Fuel!")
 level = 1
+let sstat = 0
 setLevel(level)
 Wookie = sprites.create(assets.image`Chewbacca`, SpriteKind.Player)
 controller.moveSprite(Wookie)
@@ -301,6 +316,7 @@ FirstEngine = 0
 FirstTools = 0
 clicks = 0
 Fuel = 0
+Threshhold = 100
 bb8 = sprites.create(assets.image`BB-8`, SpriteKind.droid)
 bb8.setPosition(0, 0)
 bb8.follow(Wookie, 70)
@@ -324,4 +340,10 @@ forever(function () {
         rck.setFlag(SpriteFlag.DestroyOnWall, true)
     }
     clicks += 1
+    if (Threshhold < info.score()) {
+        if (0 == sstat) {
+            mkStation()
+            sstat = 1
+        }
+    }
 })
