@@ -24,10 +24,6 @@ function setLevel (num: number) {
         tiles.setTilemap(tilemap`level2`)
     }
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.station, function (sprite, otherSprite) {
-    music.playMelody("C G F E D C5 G G ", 120)
-    game.over(true)
-})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile19`, function (sprite, location) {
     if (0 == FirstTools) {
         bb8.sayText("These Are your tools", 1000, true)
@@ -74,6 +70,10 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
             music.magicWand.play()
         }
     }
+})
+sprites.onOverlap(SpriteKind.ship, SpriteKind.station, function (sprite, otherSprite) {
+    music.playMelody("C G F E D C5 G G ", 120)
+    game.over(true)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile15`, function (sprite, location) {
     if (0 == Fixed) {
